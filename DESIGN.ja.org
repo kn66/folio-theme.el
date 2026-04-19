@@ -20,6 +20,13 @@ Language: [[./DESIGN.org][English]] | *日本語*
 - ~folio-custom-faces~ は原則 ~nil~ に保ち、個別 face 上書きより
   palette を優先する
 
+* 謝辞
+
+このテーマは、~modus-themes~ と ~ef-themes~ の作者である
+Protesilaos Stavrou 氏の設計と実装に依拠しています。~folio-theme~ は
+Modus のテーマエンジンと Ef の意味ベース palette モデルを土台にしつつ、
+それを紙 / 青 / 赤 の方向へ絞り込んでいます。
+
 * Goals
 
 - 長時間使っても背景色がうるさく感じにくいこと

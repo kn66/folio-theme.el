@@ -20,6 +20,13 @@ The theme is implemented as a derivative theme built on top of
 - ~folio-custom-faces~ stays ~nil~ by default, favoring palette design over
   face-by-face overrides
 
+* Acknowledgements
+
+This theme depends on the design and implementation work of Protesilaos
+Stavrou, the author of ~modus-themes~ and ~ef-themes~. Folio reuses the Modus
+theme engine and the Ef semantic palette model, then narrows them toward its
+own paper/blue/red direction.
+
 * Goals
 
 - Keep the background comfortable over long sessions

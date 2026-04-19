@@ -13,6 +13,12 @@ structural accents, and restrained red highlights.
 - ~folio~ keeps its own paper/blue/red identity through a custom partial
   palette and semantic mappings
 
+* Acknowledgements
+
+~folio-theme~ builds directly on the work of Protesilaos Stavrou, the author
+of ~modus-themes~ and ~ef-themes~. Its derivative structure, semantic palette
+vocabulary, and broad inherited face coverage depend on those projects.
+
 * Screenshots
 :PROPERTIES:
 :ID:       a2661746-41fd-4795-bd73-25ebd5b2d316

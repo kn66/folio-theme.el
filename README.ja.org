@@ -13,6 +13,13 @@ Language: [[./README.org][English]] | *日本語*
 - ~folio~ は独自の部分 palette と semantic mapping によって、
   紙 / 青 / 赤 のアイデンティティを維持する
 
+* 謝辞
+
+~folio-theme~ は、~modus-themes~ と ~ef-themes~ の作者である
+Protesilaos Stavrou 氏の仕事の上に成り立っています。派生テーマとして
+の構造、意味ベースの palette 語彙、広い face カバレッジは両プロジェクト
+に依拠しています。
+
 * Dependencies
 
 - Emacs ~28.1+~
