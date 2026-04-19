@@ -41,6 +41,10 @@ Reloading ~folio-theme.el~ in an active session is also supported.
 ~folio-theme~ now provides the ~folio-theme~ feature, so it can be loaded
 directly via ~use-package~ before calling ~load-theme~:
 
+When installed as a package, its directory is also registered in
+~custom-theme-load-path~, so ~M-x load-theme~ and theme selection UIs can
+discover ~folio~ normally.
+
 #+begin_src emacs-lisp
 (use-package folio-theme
   :vc (:url "https://github.com/kn66/folio-theme.el"

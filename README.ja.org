@@ -41,6 +41,10 @@ Language: [[./README.org][English]] | *日本語*
 ~folio-theme~ は ~folio-theme~ feature を提供するため、~use-package~
 から直接読み込んでから ~load-theme~ を呼べます。
 
+package としてインストールした場合は、そのディレクトリが
+~custom-theme-load-path~ にも登録されるため、~M-x load-theme~ や
+テーマ選択 UI からも通常どおり ~folio~ を見つけられます。
+
 #+begin_src emacs-lisp
 (use-package folio-theme
   :vc (:url "https://github.com/kn66/folio-theme.el"
