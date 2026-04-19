@@ -1,0 +1,61 @@
+#+title: folio-theme
+
+Language: [[./README.org][English]] | *日本語*
+
+紙のようなオフホワイト背景、深い青の構造色、抑えた赤の強調色を持つ
+暖かいライト Emacs テーマです。
+
+~folio-theme~ は現在、~modus-themes~ と ~ef-themes~ を土台にした
+派生テーマとして構築されています。
+
+- ~ef-themes~ は意味ベースの palette 語彙を提供する
+- ~modus-themes~ はその palette を広範な package face に適用する
+- ~folio~ は独自の部分 palette と semantic mapping によって、
+  紙 / 青 / 赤 のアイデンティティを維持する
+
+* Dependencies
+
+- Emacs ~28.1+~
+- ~modus-themes 5.0.0+~
+- ~ef-themes 2.0.0+~
+
+* Load locally
+
+依存関係をインストールし、このディレクトリを
+~custom-theme-load-path~ に追加してからテーマを読み込みます。
+
+#+begin_src emacs-lisp
+(package-install 'modus-themes)
+(package-install 'ef-themes)
+
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "folio-theme" user-emacs-directory))
+(load-theme 'folio t)
+#+end_src
+
+有効なセッション中に ~folio-theme.el~ を再読み込みすることもできます。
+
+* Design direction
+
+- 背景: Sakura Editor の明色背景に着想を得た ~#FFFBF0~
+- 構造: 深い青
+- 警告や例外: 抑えた赤
+- 目標: 背景が黄色すぎる印象にならず、長時間でも使いやすいこと
+
+* Implementation model
+
+- ~folio-palette-partial~: テーマの基礎となる名前付き色
+- ~folio-palette-mappings-partial~: UI、見出し、mark、modeline、
+  completion、terminal 色を対象にした Ef 風の意味色マッピング
+- ~folio-custom-faces~: 現在は ~nil~。設計の中心は face 上書きではなく
+  palette に置く
+
+最近の更新では、~modus-themes~ が参照できる role のカバレッジを増やし、
+face ごとの上書きを増やさずに見出し、modeline 状態、mark face、
+button 状態、目立つ diagnostics、terminal ANSI 色まで広げています。
+その際も、青は構造、赤は例外、暖かい黄は環境的な強調という原則を
+維持しています。選択面はごく薄い黄みで、cursor は少し深い gold に寄せ、
+強い青アクセントを戻さずに位置を見つけやすくしています。
+
+詳しくは [[./DESIGN.org][DESIGN.org]] と [[./DESIGN.ja.org][DESIGN.ja.org]] を
+参照してください。

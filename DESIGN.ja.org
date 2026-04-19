@@ -1,0 +1,339 @@
+#+title: folio-theme Design
+
+Language: [[./DESIGN.org][English]] | *日本語*
+
+* Overview
+
+~folio-theme~ は、長時間利用を前提にした Emacs 向けライトテーマです。
+設計の中心は次の 3 点です。
+
+- 背景は ~真っ白~ ではなく、ごく薄い紙色にする
+- 構造や視線誘導は ~深い青~ に寄せる
+- ~赤~ は例外や警告など、意味の強い箇所に限定する
+
+現在は ~modus-themes~ と ~ef-themes~ を土台にした派生テーマとして
+実装しています。
+
+- ~folio-palette-partial~ が土台色を定義する
+- ~folio-palette-mappings-partial~ が Ef 流の意味色へ割り当てる
+- ~modus-themes-theme~ が広い face 群へ反映する
+- ~folio-custom-faces~ は原則 ~nil~ に保ち、個別 face 上書きより
+  palette を優先する
+
+この構成により、~基本 UI~、~font-lock~、~diff~、~org~、~magit~ に
+加えて、~vertico~、~consult~、~company~、~corfu~、~flymake~、
+~flycheck~、~which-key~ なども Modus 側の face カバレッジを通じて
+扱います。最近は ~heading~、~modeline~、~mark~、~button~、
+~terminal~、~org-habit~ 周辺でも palette role を増やし、
+face 個別上書きに頼らずに整える方針を強めています。
+
+* Goals
+
+- 長時間使っても背景色がうるさく感じにくいこと
+- 明るいライトテーマでありつつ、白すぎて硬い印象にならないこと
+- 構文強調で色数を増やしすぎず、視線誘導が破綻しないこと
+- ~org~ や ~magit~ を含む日常利用で大きく崩れないこと
+- 手作業の face 列挙ではなく、意味色ベースで対応面を広げること
+
+* Non-goals
+
+- すべての外部パッケージ face を手作業で個別調整すること
+- ~ef-themes~ や ~modus-themes~ の既定判断を全面的に踏襲すること
+- 華やかさや個性を最優先にすること
+- 黄色と赤を大量に使って強い世界観を押し出すこと
+
+* Design Principles
+
+** 1. Background First
+
+背景はテーマ全体の印象を支配するため、先に背景を固定します。
+現在の基準背景色は ~#FFFBF0~ です。
+
+- ~#FFFFFF~ より柔らかい
+- ~#F6F0D8~ より黄みが弱い
+- オフホワイトとしては十分に明るい
+- ~region~ や ~hl-line~ の差分を設計しやすい
+
+** 2. Blue Builds Structure
+
+深い青は、次のような「構造を示す face」に割り当てます。
+
+- ~minibuffer-prompt~
+- ~link~
+- ~font-lock-keyword-face~
+- ~font-lock-function-name-face~
+- ~org-level-*~
+- ~magit-section-heading~
+
+黄色背景に対して青は視線誘導を作りやすく、赤ほど心理的な緊張を
+常駐させません。
+
+** 3. Red Means Exception
+
+赤は常用色ではなく、意味の強い箇所に限定します。
+
+- ~error~
+- ~font-lock-warning-face~
+- ~show-paren-mismatch~
+- ~diff-removed~
+- ~org-todo~
+
+これにより、赤が出た時だけ注意を引く設計にしています。
+
+** 4. Yellow Stays in the Background Layer
+
+黄色はテーマ名の印象には残しますが、前面の主役にはしません。
+
+- 背景の紙らしさ
+- ~region~ のごく薄い選択面
+- ~lazy-highlight~
+- 一部の ~string~
+- 一部の ~org-level~
+- 差分の変更色
+
+黄色を UI 面や軽い強調に寄せることで、画面全体が暖かくなりつつも
+疲れにくくなります。
+
+* Framework Model
+
+** Palette layer
+
+~folio-palette-partial~ は、~bg-main~、~fg-main~、~blue~、~red~ の
+ような基礎色を持ちます。~bg-*-nuanced~ や ~bg-graph-*~ のような
+補助背景もここに置きます。
+ここでは ~folio~ の世界観そのものを表現します。
+
+** Semantic mapping layer
+
+~folio-palette-mappings-partial~ は、Ef の意味色語彙を使って役割を
+定義します。
+
+- ~keyword~
+- ~fnname~
+- ~fg-link~
+- ~err~
+- ~warning~
+- ~prose-todo~
+- ~bg-search-current~
+- ~accent-*~
+- ~fg-heading-*~
+- ~modeline-*~
+- ~bg-mark-*~
+- ~bg-term-*~
+
+このレイヤーで「青が構造、赤が例外、黄が暖かさ」という原則を
+広いパッケージ集合へ伝播させます。
+
+** Face override layer
+
+原則として face 個別上書きは使いません。
+~folio~ の見た目はできるだけ palette entry と semantic mapping で
+表現します。
+
+たとえば次のような箇所も palette 側で制御します。
+
+- ~orderless-match-face-*~ は ~fg-completion-match-*~
+- ~show-paren-*~ は ~bg-paren-match~, ~fg-paren-match~,
+  ~bg-prominent-err~
+- ~whitespace-*~ は ~bg-space~, ~fg-space~, ~bg-space-err~
+- ~tab-bar-*~ は ~bg-tab-bar~, ~bg-tab-current~, ~bg-tab-other~
+- ~org-block~, ~org-quote~ は ~bg-prose-block-*~
+
+* Color Palette
+
+** Core palette
+
+| Role      | Value     | Purpose                    |
+|-----------+-----------+----------------------------|
+| ~bg-main~ | ~#FFFBF0~ | メイン背景                 |
+| ~bg-dim~  | ~#F7F2E7~ | サブ背景                   |
+| ~bg-alt~  | ~#EEE5CF~ | 選択・強調面               |
+| ~bg-hl~   | ~#F5EFE0~ | 現在行などの弱い面         |
+| ~fg-main~ | ~#2C2924~ | 通常文字                   |
+| ~fg-dim~  | ~#6B6459~ | 補助文字                   |
+| ~fg-alt~  | ~#7A7165~ | コメント・文書補助         |
+| ~border~  | ~#DDD4C2~ | 境界線                     |
+
+** Accent palette
+
+| Role          | Value     | Purpose            |
+|---------------+-----------+--------------------|
+| ~yellow~      | ~#C59A1B~ | 暖色アクセント     |
+| ~yellow-soft~ | ~#D8B85A~ | 検索・軽い強調     |
+| ~blue~        | ~#274C77~ | 主構造色           |
+| ~blue-soft~   | ~#4A6A91~ | 補助構造色         |
+| ~red~         | ~#8E3434~ | エラー・危険       |
+| ~red-soft~    | ~#B35C4A~ | 警告・補助赤       |
+| ~green~       | ~#5C6B2D~ | success / added    |
+| ~green-soft~  | ~#74823F~ | done / 補助緑      |
+
+** Surface extensions
+
+| Role family    | Example             | Purpose                         |
+|----------------+---------------------+---------------------------------|
+| ~bg-*-subtle~  | ~bg-blue-subtle~    | 軽い hover / mark / 検索背景    |
+| ~bg-*-intense~ | ~bg-red-intense~    | 例外や強調の強い面             |
+| ~bg-*-nuanced~ | ~bg-yellow-nuanced~ | heading や軽い区切り面         |
+| ~bg-graph-*~   | ~bg-graph-green-0~  | ~org-habit~ や graph 系 face   |
+
+* Role Model
+
+#+begin_src mermaid
+flowchart TD
+    BG[Background Layer\nbg-main / bg-dim / bg-hl] --> UI[Core UI]
+    BG --> Code[Code Rendering]
+    BG --> Docs[Org / prose]
+    BLUE[Deep Blue\nstructure] --> UI
+    BLUE --> Code
+    BLUE --> Docs
+    RED[Deep Red\nexception] --> UI
+    RED --> Diff[Diff / diagnostics]
+    YELLOW[Warm Yellow\nambient accent] --> UI
+    YELLOW --> Code
+    GREEN[Green\nsuccess state] --> Diff
+    GREEN --> Docs
+#+end_src
+
+* Face Strategy
+
+** Core UI
+
+| Area            | Strategy |
+|-----------------+----------|
+| Main surface    | オフホワイト面を維持し、明度差で情報階層を作る |
+| Context surface | ~bg-dim~ / ~bg-alt~ / ~bg-hl~ の差で奥行きを作る |
+| Window tabs     | 選択タブだけ ~bg-main~ に戻し、青で視点を固定する |
+| Modeline        | active は紙色の延長、情報色は ~modeline-info~ などの semantic role で示す |
+| Selection       | ~region~ はごく薄い黄みで紙の延長として見せ、~hl-line~ は中立のまま保つ |
+| Navigation      | prompt, link, 見出し系は青で構造を示し、cursor は濃い gold で位置を示す |
+| Alerts          | error / warning / success は意味色を明確に分ける |
+| Marks / buttons | 強い彩度ではなく subtle background で操作状態を示す |
+
+** Syntax Highlighting
+
+| Syntax role              | Direction             |
+|--------------------------+-----------------------|
+| Keyword                  | ~blue~                |
+| Function                 | ~blue~                |
+| Type / builtin           | ~blue-soft~           |
+| Variable                 | ~fg-main~             |
+| String                   | ~yellow~              |
+| Constant / regexp accent | ~red-soft~            |
+| Warning / invalid        | ~red~                 |
+| Comment / doc            | ~fg-alt~, ~fg-dim~    |
+
+狙いは、~構造は青~、~本文は中性色~、~例外は赤~ という役割分離です。
+
+** Domain-specific Faces
+
+*** Diff / VC
+
+- 追加: ~green~
+- 削除: ~red~
+- 変更: ~yellow~
+- refine: 背景を少し濃くして差分を詰める
+
+*** Org
+
+- 見出し上位: ~blue~, ~blue-soft~
+- 補助的な見出し差別化: ~yellow~
+- TODO: ~red~
+- DONE: ~green-soft~
+- block: ~bg-dim~
+
+*** Corfu
+
+- popup base: ~bg-completion~
+- current / quick key: ~bg-search-current~, ~fg-search-current~
+- annotation: Modus 既定の ~fg-dim~ を利用
+
+*** Headings / outline
+
+- 上位見出しは ~blue~ / ~blue-warmer~ を中心にする
+- 補助レベルには ~yellow~、~green~、~red-soft~ を限定的に混ぜる
+- 必要な段だけ ~bg-*-nuanced~ を使い、全面的な色帯にはしない
+
+*** Modeline / terminal
+
+- modeline は背景を紙色の延長に置き、状態色だけ semantic role で
+  分ける
+- terminal ANSI 色も同じ palette family に寄せ、別世界の配色に
+  しない
+
+*** Orderless
+
+- component 0: ~blue~
+- component 1: ~red-soft~
+- component 2: ~green~
+- component 3: ~yellow~
+
+*** Magit
+
+- local branch: ~blue~
+- remote branch: ~green~
+- diff: ~diff-*~ と整合する配色
+- section heading もまずは Modus/Ef の palette 設計を優先する
+
+* Current File Structure
+
+#+begin_src mermaid
+graph TD
+    A[folio-theme/] --> B[folio-theme.el]
+    A --> C[README.org]
+    A --> D[README.ja.org]
+    A --> E[DESIGN.org]
+    A --> F[DESIGN.ja.org]
+    B --> G[folio-palette-partial]
+    B --> H[folio-palette-mappings-partial]
+    B --> I[folio-custom-faces nil]
+    B --> J[modus-themes-theme]
+#+end_src
+
+* Loading Model
+
+#+begin_src emacs-lisp
+(package-install 'modus-themes)
+(package-install 'ef-themes)
+
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "folio-theme" user-emacs-directory))
+(load-theme 'folio t)
+#+end_src
+
+~folio-theme.el~ は単独完結の face 列挙ではなく、~modus-themes~ と
+~ef-themes~ を依存としてロードする構成です。
+
+* Trade-offs
+
+- Modus の広い face カバレッジを得る代わりに、下層の抽象に寄せた
+  設計になる
+- 背景を暖かくしているため、純白テーマほどの無機質な明快さはない
+- 青を構造色として多めに使うため、暖色主体の個性は抑えめになる
+- ~string~ に黄色を使っているため、ここは今後の見直し候補になりうる
+
+* Open Questions
+
+- ~font-lock-string-face~ は黄色のままでよいか
+- ~keyword~ と ~function-name~ の差をもう少し広げるか
+- ~region~ の背景差は現在のままで十分か
+- ~mode-line~ を今より締めるか、より背景になじませるか
+- ~org-level-3~ に黄色を残すか、青系に寄せるか
+
+* Future Work
+
+- パッケージ個別 face の追加より先に、意味色マッピングの妥当性を
+  詰める
+- ~completion~, ~search~, ~diff~ の実運用での再評価
+- 日中と夜間での見え方の差の確認
+- 常用した後も、まず palette で吸収できるかを先に検討する
+
+* Validation Checklist
+
+- 通常本文を 30 分以上読んでも背景が気にならないか
+- ~keyword~, ~function~, ~string~, ~comment~ の識別が過剰でないか
+- ~region~, ~hl-line~, ~isearch~ が十分に見えるか
+- ~org~ と ~magit~ で情報の階層が破綻していないか
+- 赤が常時目につきすぎていないか
+- 黄色が「世界観」ではなく「ノイズ」になっていないか
+- ~vertico~, ~consult~, ~corfu~, ~which-key~ でも温度感が
+  崩れていないか

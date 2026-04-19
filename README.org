@@ -1,0 +1,63 @@
+#+title: folio-theme
+
+Language: *English* | [[./README.ja.org][日本語]]
+
+Warm light Emacs theme with a paper-like off-white background, deep blue
+structural accents, and restrained red highlights.
+
+~folio-theme~ is now built as a derivative theme on top of
+~modus-themes~ and ~ef-themes~.
+
+- ~ef-themes~ provides the semantic palette vocabulary
+- ~modus-themes~ applies that palette across a broad set of package faces
+- ~folio~ keeps its own paper/blue/red identity through a custom partial
+  palette and semantic mappings
+
+* Dependencies
+
+- Emacs ~28.1+~
+- ~modus-themes 5.0.0+~
+- ~ef-themes 2.0.0+~
+
+* Load locally
+
+Install the dependencies, add this directory to ~custom-theme-load-path~,
+then load the theme:
+
+#+begin_src emacs-lisp
+(package-install 'modus-themes)
+(package-install 'ef-themes)
+
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "folio-theme" user-emacs-directory))
+(load-theme 'folio t)
+#+end_src
+
+Reloading ~folio-theme.el~ in an active session is also supported.
+
+* Design direction
+
+- Background: ~#FFFBF0~ inspired by Sakura Editor's light background
+- Structure: deep blue
+- Alerts and exceptions: restrained red
+- Goal: stay usable for long sessions without the background feeling too
+  yellow
+
+* Implementation model
+
+- ~folio-palette-partial~: base named colors for the theme
+- ~folio-palette-mappings-partial~: semantic role mappings in the Ef style
+  for UI, headings, marks, modelines, completion, and terminal colors
+- ~folio-custom-faces~: currently ~nil~; palette-first design is preferred
+
+Recent additions expand the role coverage that ~modus-themes~ can consume
+without introducing face-by-face overrides. In particular, ~folio~ now
+provides dedicated mappings for headings, modeline states, mark faces,
+button states, prominent diagnostics, and terminal ANSI colors while keeping
+blue as structure, red as exception, and warm yellow as ambient emphasis.
+Selection uses a very light yellow surface, while the cursor shifts to a
+deeper gold so position remains easy to spot without reintroducing a strong
+blue accent.
+
+See [[./DESIGN.org][DESIGN.org]] for the English design document and
+[[./DESIGN.ja.org][DESIGN.ja.org]] for the Japanese version.

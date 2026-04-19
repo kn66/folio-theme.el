@@ -1,0 +1,347 @@
+#+title: folio-theme Design
+
+Language: *English* | [[./DESIGN.ja.org][日本語]]
+
+* Overview
+
+~folio-theme~ is a light Emacs theme designed for long working sessions.
+Its design centers on three ideas:
+
+- Use a very light paper tone instead of pure white for the background
+- Push structure and visual guidance toward deep blue
+- Reserve red for exceptions, warnings, and other high-signal states
+
+The theme is currently implemented as a derivative theme built on top of
+~modus-themes~ and ~ef-themes~.
+
+- ~folio-palette-partial~ defines the base colors
+- ~folio-palette-mappings-partial~ maps them to Ef-style semantic roles
+- ~modus-themes-theme~ propagates those mappings to a broad set of faces
+- ~folio-custom-faces~ stays ~nil~ by default, favoring palette design over
+  face-by-face overrides
+
+This structure covers ~core UI~, ~font-lock~, ~diff~, ~org~, and ~magit~,
+along with packages such as ~vertico~, ~consult~, ~company~, ~corfu~,
+~flymake~, ~flycheck~, and ~which-key~ through Modus face coverage.
+Recent work expands palette roles around ~heading~, ~modeline~, ~mark~,
+~button~, ~terminal~, and ~org-habit~, reinforcing the preference for
+palette-driven behavior instead of per-face customization.
+
+* Goals
+
+- Keep the background comfortable over long sessions
+- Stay clearly light without feeling stark or clinically white
+- Avoid excessive syntax colors that weaken visual guidance
+- Hold up in daily workflows including ~org~ and ~magit~
+- Expand coverage through semantic roles instead of manual face enumeration
+
+* Non-goals
+
+- Manually tuning every external package face
+- Fully inheriting the default judgment of ~ef-themes~ or ~modus-themes~
+- Prioritizing flamboyance or visual personality above usability
+- Pushing a strong yellow-and-red visual identity across the whole screen
+
+* Design Principles
+
+** 1. Background First
+
+The background determines the overall feel of the theme, so it is fixed
+first. The current reference background is ~#FFFBF0~.
+
+- Softer than ~#FFFFFF~
+- Less yellow than ~#F6F0D8~
+- Bright enough to function as an off-white base
+- Easy to separate from ~region~ and ~hl-line~
+
+** 2. Blue Builds Structure
+
+Deep blue is assigned to faces that communicate structure, such as:
+
+- ~minibuffer-prompt~
+- ~link~
+- ~font-lock-keyword-face~
+- ~font-lock-function-name-face~
+- ~org-level-*~
+- ~magit-section-heading~
+
+Against a warm yellow paper background, blue guides the eye without keeping
+the psychological tension that red would introduce.
+
+** 3. Red Means Exception
+
+Red is not a default working color. It is limited to semantically strong
+cases:
+
+- ~error~
+- ~font-lock-warning-face~
+- ~show-paren-mismatch~
+- ~diff-removed~
+- ~org-todo~
+
+That makes red stand out precisely when attention is needed.
+
+** 4. Yellow Stays in the Background Layer
+
+Yellow remains part of the theme identity, but it should not dominate the
+foreground.
+
+- The paper-like warmth of the background
+- The very light surface used for ~region~
+- ~lazy-highlight~
+- Some ~string~ faces
+- Some ~org-level~ faces
+- Changed lines in diffs
+
+Keeping yellow in UI surfaces and light emphasis preserves warmth without
+turning the entire interface into noise.
+
+* Framework Model
+
+** Palette layer
+
+~folio-palette-partial~ provides base colors such as ~bg-main~, ~fg-main~,
+~blue~, and ~red~. It also defines support surfaces such as
+~bg-*-nuanced~ and ~bg-graph-*~.
+This layer expresses the visual identity of ~folio~ itself.
+
+** Semantic mapping layer
+
+~folio-palette-mappings-partial~ defines roles using the Ef semantic palette
+vocabulary.
+
+- ~keyword~
+- ~fnname~
+- ~fg-link~
+- ~err~
+- ~warning~
+- ~prose-todo~
+- ~bg-search-current~
+- ~accent-*~
+- ~fg-heading-*~
+- ~modeline-*~
+- ~bg-mark-*~
+- ~bg-term-*~
+
+This is the layer that propagates the rules of "blue for structure, red for
+exception, yellow for warmth" across a broad package set.
+
+** Face override layer
+
+Face-by-face overrides are avoided by default.
+~folio~ should express itself through palette entries and semantic mappings
+whenever possible.
+
+Examples of palette-driven control:
+
+- ~orderless-match-face-*~ through ~fg-completion-match-*~
+- ~show-paren-*~ through ~bg-paren-match~, ~fg-paren-match~,
+  ~bg-prominent-err~
+- ~whitespace-*~ through ~bg-space~, ~fg-space~, ~bg-space-err~
+- ~tab-bar-*~ through ~bg-tab-bar~, ~bg-tab-current~, ~bg-tab-other~
+- ~org-block~, ~org-quote~ through ~bg-prose-block-*~
+
+* Color Palette
+
+** Core palette
+
+| Role      | Value     | Purpose                              |
+|-----------+-----------+--------------------------------------|
+| ~bg-main~ | ~#FFFBF0~ | Main background                      |
+| ~bg-dim~  | ~#F7F2E7~ | Secondary background                 |
+| ~bg-alt~  | ~#EEE5CF~ | Selection and emphasis surface       |
+| ~bg-hl~   | ~#F5EFE0~ | Weak highlight surface such as line  |
+| ~fg-main~ | ~#2C2924~ | Main text                            |
+| ~fg-dim~  | ~#6B6459~ | Supporting text                      |
+| ~fg-alt~  | ~#7A7165~ | Comments and document support text   |
+| ~border~  | ~#DDD4C2~ | Border color                         |
+
+** Accent palette
+
+| Role            | Value     | Purpose                        |
+|-----------------+-----------+--------------------------------|
+| ~yellow~        | ~#C59A1B~ | Warm accent                    |
+| ~yellow-soft~   | ~#D8B85A~ | Search and light emphasis      |
+| ~blue~          | ~#274C77~ | Primary structural color       |
+| ~blue-soft~     | ~#4A6A91~ | Secondary structural color     |
+| ~red~           | ~#8E3434~ | Error and danger               |
+| ~red-soft~      | ~#B35C4A~ | Warning and supporting red     |
+| ~green~         | ~#5C6B2D~ | Success and added state        |
+| ~green-soft~    | ~#74823F~ | Done state and supporting green|
+
+** Surface extensions
+
+| Role family      | Example             | Purpose                                  |
+|------------------+---------------------+------------------------------------------|
+| ~bg-*-subtle~    | ~bg-blue-subtle~    | Light hover, mark, and search backgrounds|
+| ~bg-*-intense~   | ~bg-red-intense~    | Strong exception or emphasis surfaces    |
+| ~bg-*-nuanced~   | ~bg-yellow-nuanced~ | Heading and soft section surfaces        |
+| ~bg-graph-*~     | ~bg-graph-green-0~  | ~org-habit~ and graph-oriented faces     |
+
+* Role Model
+
+#+begin_src mermaid
+flowchart TD
+    BG[Background Layer\nbg-main / bg-dim / bg-hl] --> UI[Core UI]
+    BG --> Code[Code Rendering]
+    BG --> Docs[Org / prose]
+    BLUE[Deep Blue\nstructure] --> UI
+    BLUE --> Code
+    BLUE --> Docs
+    RED[Deep Red\nexception] --> UI
+    RED --> Diff[Diff / diagnostics]
+    YELLOW[Warm Yellow\nambient accent] --> UI
+    YELLOW --> Code
+    GREEN[Green\nsuccess state] --> Diff
+    GREEN --> Docs
+#+end_src
+
+* Face Strategy
+
+** Core UI
+
+| Area           | Strategy                                                            |
+|----------------+---------------------------------------------------------------------|
+| Main surface   | Preserve an off-white paper surface and build hierarchy through lightness differences |
+| Context surface| Use ~bg-dim~, ~bg-alt~, and ~bg-hl~ to create depth                |
+| Window tabs    | Return the selected tab to ~bg-main~ and anchor focus with blue    |
+| Modeline       | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~ |
+| Selection      | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral |
+| Navigation     | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity |
+| Alerts         | Separate error, warning, and success with clear semantic colors     |
+| Marks and buttons | Prefer subtle background surfaces over strong saturation for state |
+
+** Syntax Highlighting
+
+| Syntax role             | Direction    |
+|-------------------------+--------------|
+| Keyword                 | ~blue~       |
+| Function                | ~blue~       |
+| Type / builtin          | ~blue-soft~  |
+| Variable                | ~fg-main~    |
+| String                  | ~yellow~     |
+| Constant / regexp accent| ~red-soft~   |
+| Warning / invalid       | ~red~        |
+| Comment / doc           | ~fg-alt~, ~fg-dim~ |
+
+The aim is role separation: structure in blue, body text in neutral colors,
+and exceptions in red.
+
+** Domain-specific Faces
+
+*** Diff / VC
+
+- Added: ~green~
+- Removed: ~red~
+- Changed: ~yellow~
+- Refined chunks: slightly denser background to tighten the diff
+
+*** Org
+
+- Higher headings: ~blue~, ~blue-soft~
+- Secondary heading differentiation: ~yellow~
+- TODO: ~red~
+- DONE: ~green-soft~
+- Blocks: ~bg-dim~
+
+*** Corfu
+
+- Popup base: ~bg-completion~
+- Current candidate and quick key: ~bg-search-current~,
+  ~fg-search-current~
+- Annotation: use the Modus default ~fg-dim~
+
+*** Headings / outline
+
+- Higher headings center on ~blue~ and ~blue-warmer~
+- Secondary levels may mix in ~yellow~, ~green~, and ~red-soft~ sparingly
+- Use ~bg-*-nuanced~ only where needed, not as full-width color bands
+
+*** Modeline / terminal
+
+- Keep the modeline background as an extension of paper and separate states
+  through semantic roles
+- Keep terminal ANSI colors in the same palette family instead of letting
+  them drift into a separate visual system
+
+*** Orderless
+
+- Component 0: ~blue~
+- Component 1: ~red-soft~
+- Component 2: ~green~
+- Component 3: ~yellow~
+
+*** Magit
+
+- Local branch: ~blue~
+- Remote branch: ~green~
+- Diff: colors aligned with ~diff-*~
+- Section headings should continue to prefer Modus/Ef palette design first
+
+* Current File Structure
+
+#+begin_src mermaid
+graph TD
+    A[folio-theme/] --> B[folio-theme.el]
+    A --> C[README.org]
+    A --> D[README.ja.org]
+    A --> E[DESIGN.org]
+    A --> F[DESIGN.ja.org]
+    B --> G[folio-palette-partial]
+    B --> H[folio-palette-mappings-partial]
+    B --> I[folio-custom-faces nil]
+    B --> J[modus-themes-theme]
+#+end_src
+
+* Loading Model
+
+#+begin_src emacs-lisp
+(package-install 'modus-themes)
+(package-install 'ef-themes)
+
+(add-to-list 'custom-theme-load-path
+             (expand-file-name "folio-theme" user-emacs-directory))
+(load-theme 'folio t)
+#+end_src
+
+~folio-theme.el~ is not a standalone file with an exhaustive face list.
+It depends on ~modus-themes~ and ~ef-themes~ and is loaded on top of them.
+
+* Trade-offs
+
+- Broad Modus face coverage comes at the cost of designing closer to lower
+  level abstractions
+- A warmer background is less starkly clear than a pure-white theme
+- Using blue as the dominant structural color intentionally restrains a more
+  warm-toned visual identity
+- Using yellow for ~string~ remains a candidate for future review
+
+* Open Questions
+
+- Should ~font-lock-string-face~ stay yellow
+- Should the distinction between ~keyword~ and ~function-name~ become
+  stronger
+- Is the current ~region~ contrast already sufficient
+- Should the ~mode-line~ feel tighter or blend further into the background
+- Should ~org-level-3~ keep yellow or move closer to blue
+
+* Future Work
+
+- Refine the semantic mappings before adding package-specific face overrides
+- Re-evaluate ~completion~, ~search~, and ~diff~ in real usage
+- Check how the palette behaves in both daytime and night use
+- Continue testing whether new needs can be absorbed at the palette layer
+  first
+
+* Validation Checklist
+
+- Does the background stay comfortable after reading normal text for
+  30 minutes
+- Are ~keyword~, ~function~, ~string~, and ~comment~ differentiated without
+  excess
+- Are ~region~, ~hl-line~, and ~isearch~ clearly visible
+- Do ~org~ and ~magit~ keep a stable information hierarchy
+- Does red avoid drawing constant attention
+- Does yellow remain thematic rather than turning into noise
+- Does the same temperature hold in ~vertico~, ~consult~, ~corfu~, and
+  ~which-key~
