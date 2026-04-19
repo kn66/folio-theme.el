@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This directory contains the source for `paper-gold-theme`.
+This directory contains the source for `folio-theme`.
 
 ## Working Rules
 

@@ -21,15 +21,16 @@ structural accents, and restrained red highlights.
 
 * Load locally
 
-Install the dependencies, add this directory to ~custom-theme-load-path~,
-then load the theme:
+Install the dependencies, add the directory that contains
+~folio-theme.el~ to ~custom-theme-load-path~, then load the theme:
 
 #+begin_src emacs-lisp
+(defconst folio-theme-directory "/path/to/folio-theme-directory")
+
 (package-install 'modus-themes)
 (package-install 'ef-themes)
 
-(add-to-list 'custom-theme-load-path
-             (expand-file-name "folio-theme" user-emacs-directory))
+(add-to-list 'custom-theme-load-path folio-theme-directory)
 (load-theme 'folio t)
 #+end_src
 
@@ -47,17 +48,11 @@ Reloading ~folio-theme.el~ in an active session is also supported.
 
 - ~folio-palette-partial~: base named colors for the theme
 - ~folio-palette-mappings-partial~: semantic role mappings in the Ef style
-  for UI, headings, marks, modelines, completion, and terminal colors
+  for UI, headings, marks, modelines, and terminal colors
 - ~folio-custom-faces~: currently ~nil~; palette-first design is preferred
 
-Recent additions expand the role coverage that ~modus-themes~ can consume
-without introducing face-by-face overrides. In particular, ~folio~ now
-provides dedicated mappings for headings, modeline states, mark faces,
-button states, prominent diagnostics, and terminal ANSI colors while keeping
-blue as structure, red as exception, and warm yellow as ambient emphasis.
-Selection uses a very light yellow surface, while the cursor shifts to a
-deeper gold so position remains easy to spot without reintroducing a strong
-blue accent.
+The theme stays palette-first: blue carries structure, red carries
+exceptions, and warm yellow stays in supporting surfaces.
 
 See [[./DESIGN.org][DESIGN.org]] for the English design document and
 [[./DESIGN.ja.org][DESIGN.ja.org]] for the Japanese version.

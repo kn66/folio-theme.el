@@ -21,15 +21,16 @@ Language: [[./README.org][English]] | *日本語*
 
 * Load locally
 
-依存関係をインストールし、このディレクトリを
+依存関係をインストールし、~folio-theme.el~ を含むディレクトリを
 ~custom-theme-load-path~ に追加してからテーマを読み込みます。
 
 #+begin_src emacs-lisp
+(defconst folio-theme-directory "/path/to/folio-theme-directory")
+
 (package-install 'modus-themes)
 (package-install 'ef-themes)
 
-(add-to-list 'custom-theme-load-path
-             (expand-file-name "folio-theme" user-emacs-directory))
+(add-to-list 'custom-theme-load-path folio-theme-directory)
 (load-theme 'folio t)
 #+end_src
 
@@ -46,16 +47,12 @@ Language: [[./README.org][English]] | *日本語*
 
 - ~folio-palette-partial~: テーマの基礎となる名前付き色
 - ~folio-palette-mappings-partial~: UI、見出し、mark、modeline、
-  completion、terminal 色を対象にした Ef 風の意味色マッピング
+  terminal 色を対象にした Ef 風の意味色マッピング
 - ~folio-custom-faces~: 現在は ~nil~。設計の中心は face 上書きではなく
   palette に置く
 
-最近の更新では、~modus-themes~ が参照できる role のカバレッジを増やし、
-face ごとの上書きを増やさずに見出し、modeline 状態、mark face、
-button 状態、目立つ diagnostics、terminal ANSI 色まで広げています。
-その際も、青は構造、赤は例外、暖かい黄は環境的な強調という原則を
-維持しています。選択面はごく薄い黄みで、cursor は少し深い gold に寄せ、
-強い青アクセントを戻さずに位置を見つけやすくしています。
+テーマ設計は palette-first を維持し、青は構造、赤は例外、
+暖かい黄は補助的な面に置きます。
 
 詳しくは [[./DESIGN.org][DESIGN.org]] と [[./DESIGN.ja.org][DESIGN.ja.org]] を
 参照してください。
