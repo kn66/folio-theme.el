@@ -17,8 +17,8 @@ The theme is implemented as a derivative theme built on top of
 - ~folio-palette-partial~ defines the base colors
 - ~folio-palette-mappings-partial~ maps them to Ef-style semantic roles
 - ~modus-themes-theme~ propagates those mappings to inherited face coverage
-- ~folio-custom-faces~ stays ~nil~ by default, favoring palette design over
-  face-by-face overrides
+- ~folio-custom-faces~ remains small and only covers package-specific cases
+  where inherited mappings are not distinct enough on their own
 
 * Acknowledgements
 
@@ -143,6 +143,7 @@ turning the entire interface into noise.
 | Window tabs    | Return the selected tab to ~bg-main~ and anchor focus with blue    |
 | Modeline       | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~ |
 | Selection      | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral |
+| Completion     | Use a subtle blue current-line surface for Corfu so the active candidate stays distinct without a harsh band |
 | Navigation     | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity |
 | Alerts         | Separate error, warning, and success with clear semantic colors     |
 | Marks and buttons | Prefer subtle background surfaces over strong saturation for state |

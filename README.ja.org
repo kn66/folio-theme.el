@@ -72,11 +72,13 @@ package としてインストールした場合は、そのディレクトリが
 - ~folio-palette-partial~: テーマの基礎となる名前付き色
 - ~folio-palette-mappings-partial~: UI、見出し、mark、modeline、
   terminal 色を対象にした Ef 風の意味色マッピング
-- ~folio-custom-faces~: 現在は ~nil~。設計の中心は face 上書きではなく
-  palette に置く
+- ~folio-custom-faces~: 継承された mapping だけでは足りない箇所に限って
+  追加する package face 上書き
 
 テーマ設計は palette-first を維持し、青は構造、赤は例外、
 暖かい黄は補助的な面に置きます。
+Corfu の選択行にはごく薄い青の面を使い、紙らしい背景を崩さずに
+現在候補を見分けやすくしています。
 
 詳しくは [[./DESIGN.org][DESIGN.org]] と [[./DESIGN.ja.org][DESIGN.ja.org]] を
 参照してください。

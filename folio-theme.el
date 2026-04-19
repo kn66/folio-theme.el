@@ -429,10 +429,24 @@ or a color string."
    (append folio-palette-mappings-partial ef-themes-palette-common))
   "Full palette for `folio'.")
 
-(defconst folio-custom-faces nil
+(defconst folio-custom-faces
+  '(`(corfu-default ((,c :inherit modus-themes-fixed-pitch
+                         :background ,bg-dim
+                         :foreground ,fg-main)))
+    `(corfu-current ((,c :background ,bg-blue-subtle
+                         :foreground ,fg-main
+                         :extend t
+                         :weight semi-bold)))
+    `(corfu-border ((,c :background ,border
+                        :foreground ,border)))
+    `(corfu-bar ((,c :background ,blue-soft)))
+    `(corfu-popupinfo ((,c :background ,bg-dim
+                           :foreground ,fg-main))))
   "Additional face overrides for `folio'.
 
-Prefer palette entries and semantic mappings over face-by-face overrides.")
+Prefer palette entries and semantic mappings first.
+Use direct face overrides only for targeted package cases where the
+inherited mapping does not provide enough contrast.")
 
 (defun folio--ensure-modus-theme-metadata ()
   "Declare `folio' as a Modus-derived theme when reloading in-session.

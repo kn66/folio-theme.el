@@ -101,10 +101,13 @@ discover ~folio~ normally.
 - ~folio-palette-partial~: base named colors for the theme
 - ~folio-palette-mappings-partial~: semantic role mappings in the Ef style
   for UI, headings, marks, modelines, and terminal colors
-- ~folio-custom-faces~: currently ~nil~; palette-first design is preferred
+- ~folio-custom-faces~: targeted package face overrides where inherited
+  mappings are not sufficient on their own
 
 The theme stays palette-first: blue carries structure, red carries
 exceptions, and warm yellow stays in supporting surfaces.
+Corfu uses a subtle blue current-line surface so the selected candidate
+remains visible without breaking the paper-like background.
 
 See [[./DESIGN.org][DESIGN.org]] for the English design document and
 [[./DESIGN.ja.org][DESIGN.ja.org]] for the Japanese version.
