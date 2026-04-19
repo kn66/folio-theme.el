@@ -462,4 +462,6 @@ has the theme properties that `modus-themes-theme' expects."
  'folio-palette-overrides
  'folio-custom-faces)
 
+(provide 'folio-theme)
+
 ;;; folio-theme.el ends here

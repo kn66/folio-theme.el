@@ -36,6 +36,19 @@ Install the dependencies, add the directory that contains
 
 Reloading ~folio-theme.el~ in an active session is also supported.
 
+* Install with use-package
+
+~folio-theme~ now provides the ~folio-theme~ feature, so it can be loaded
+directly via ~use-package~ before calling ~load-theme~:
+
+#+begin_src emacs-lisp
+(use-package folio-theme
+  :vc (:url "https://github.com/kn66/folio-theme.el"
+       :rev :newest)
+  :config
+  (load-theme 'folio t))
+#+end_src
+
 * Design direction
 
 - Background: ~#FFFBF0~ inspired by Sakura Editor's light background

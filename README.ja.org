@@ -36,6 +36,19 @@ Language: [[./README.org][English]] | *日本語*
 
 有効なセッション中に ~folio-theme.el~ を再読み込みすることもできます。
 
+* use-package でのインストール
+
+~folio-theme~ は ~folio-theme~ feature を提供するため、~use-package~
+から直接読み込んでから ~load-theme~ を呼べます。
+
+#+begin_src emacs-lisp
+(use-package folio-theme
+  :vc (:url "https://github.com/kn66/folio-theme.el"
+       :rev :newest)
+  :config
+  (load-theme 'folio t))
+#+end_src
+
 * Design direction
 
 - 背景: Sakura Editor の明色背景に着想を得た ~#FFFBF0~
