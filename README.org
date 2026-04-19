@@ -13,6 +13,35 @@ structural accents, and restrained red highlights.
 - ~folio~ keeps its own paper/blue/red identity through a custom partial
   palette and semantic mappings
 
+* Screenshots
+:PROPERTIES:
+:ID:       a2661746-41fd-4795-bd73-25ebd5b2d316
+:END:
+
+** org-mode
+
+#+DOWNLOADED: screenshot @ 2026-04-19 19:40:50
+[[file:Screenshots/2026-04-19_19-40-50_screenshot.png]]
+
+** emacs-lisp
+:PROPERTIES:
+:ID:       5f61da66-ac1a-449f-b92b-accba356b5bc
+:END:
+
+
+#+DOWNLOADED: screenshot @ 2026-04-19 19:50:05
+[[file:Screenshots/2026-04-19_19-50-05_screenshot.png]]
+
+** tsx
+:PROPERTIES:
+:ID:       09925d50-606e-40ce-9e9a-101a447b2799
+:END:
+
+
+#+DOWNLOADED: screenshot @ 2026-04-19 19:51:07
+[[file:Screenshots/2026-04-19_19-51-07_screenshot.png]]
+
+
 * Dependencies
 
 - Emacs ~28.1+~
