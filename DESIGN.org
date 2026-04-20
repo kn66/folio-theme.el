@@ -114,7 +114,7 @@ turning the entire interface into noise.
 
 | Role            | Value     | Purpose                        |
 |-----------------+-----------+--------------------------------|
-| ~yellow~        | ~#C59A1B~ | Warm accent                    |
+| ~yellow~        | ~#B68A14~ | Warm accent                    |
 | ~yellow-soft~   | ~#D8B85A~ | Search and light emphasis      |
 | ~blue~          | ~#274C77~ | Primary structural color       |
 | ~blue-soft~     | ~#4A6A91~ | Secondary structural color     |

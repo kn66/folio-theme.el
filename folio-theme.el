@@ -38,7 +38,7 @@
 
 (defconst folio-palette-partial
   '(;; Core backgrounds / foregrounds
-    (cursor "#C59A1B")
+    (cursor "#B68A14")
     (bg-main "#FFFBF0")
     (bg-dim "#F7F2E7")
     (bg-alt "#EEE5CF")
@@ -69,7 +69,7 @@
     (green-faint "#99A66C")
 
     ;; Yellow family: warm ambient accent
-    (yellow "#C59A1B")
+    (yellow "#B68A14")
     (yellow-warmer "#D8B85A")
     (yellow-cooler "#9F7A10")
     (yellow-faint "#D8C37A")
@@ -141,7 +141,7 @@
     (bg-changed "#F2E6BE")
     (bg-changed-faint "#F8F1D7")
     (bg-changed-refine "#E5D18E")
-    (bg-changed-fringe "#C59A1B")
+    (bg-changed-fringe "#B68A14")
     (fg-changed "#7A5D0C")
     (fg-changed-intense "#5F4708")
 
