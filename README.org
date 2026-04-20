@@ -25,27 +25,33 @@ vocabulary, and broad inherited face coverage depend on those projects.
 :END:
 
 ** org-mode
+:PROPERTIES:
+:ID:       25dd3c85-5638-470d-b883-52164d4b0e32
+:END:
 
-#+DOWNLOADED: screenshot @ 2026-04-19 19:40:50
-[[file:Screenshots/2026-04-19_19-40-50_screenshot.png]]
+
+#+DOWNLOADED: screenshot @ 2026-04-20 21:21:35
+[[file:Screenshots/2026-04-20_21-21-35_screenshot.png]]
+
 
 ** emacs-lisp
 :PROPERTIES:
-:ID:       5f61da66-ac1a-449f-b92b-accba356b5bc
+:ID:       eac291ff-fb99-484d-8ebf-ffc41e8079e4
 :END:
 
 
-#+DOWNLOADED: screenshot @ 2026-04-19 19:50:05
-[[file:Screenshots/2026-04-19_19-50-05_screenshot.png]]
+#+DOWNLOADED: screenshot @ 2026-04-20 21:13:11
+[[file:Screenshots/2026-04-20_21-13-11_screenshot.png]]
+
 
 ** tsx
 :PROPERTIES:
-:ID:       09925d50-606e-40ce-9e9a-101a447b2799
+:ID:       95934e53-fb20-4c7e-89be-f0bcfec9cee1
 :END:
 
 
-#+DOWNLOADED: screenshot @ 2026-04-19 19:51:07
-[[file:Screenshots/2026-04-19_19-51-07_screenshot.png]]
+#+DOWNLOADED: screenshot @ 2026-04-20 21:22:21
+[[file:Screenshots/2026-04-20_21-22-21_screenshot.png]]
 
 
 * Dependencies
