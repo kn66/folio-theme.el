@@ -112,8 +112,23 @@ discover ~folio~ normally.
 
 The theme stays palette-first: blue carries structure, red carries
 exceptions, and warm yellow stays in supporting surfaces.
-Corfu uses a subtle blue current-line surface so the selected candidate
-remains visible without breaking the paper-like background.
+Corfu uses a distinct but still quiet blue current-line treatment so the
+selected candidate remains visible without breaking the paper-like background.
+
+* Validation
+
+For package.el based setups, initialize packages before batch-loading the
+theme:
+
+#+begin_src sh
+emacs --batch -L . --eval "(progn (require 'package) (package-initialize) (require 'folio-theme) (load-theme 'folio t))"
+#+end_src
+
+Byte compilation can be checked the same way:
+
+#+begin_src sh
+emacs --batch --eval "(progn (require 'package) (package-initialize) (byte-compile-file \"folio-theme.el\"))"
+#+end_src
 
 See [[./DESIGN.org][DESIGN.org]] for the English design document and
 [[./DESIGN.ja.org][DESIGN.ja.org]] for the Japanese version.

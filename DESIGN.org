@@ -88,7 +88,7 @@ foreground.
 - The paper-like warmth of the background
 - The very light surface used for ~region~
 - ~lazy-highlight~
-- Some ~string~ faces
+- Some ~string~ faces, using a deeper yellow-family foreground for readability
 - Some ~org-level~ faces
 - Changed lines in diffs
 
@@ -116,6 +116,7 @@ turning the entire interface into noise.
 |-----------------+-----------+--------------------------------|
 | ~yellow~        | ~#B68A14~ | Warm accent                    |
 | ~yellow-soft~   | ~#D8B85A~ | Search and light emphasis      |
+| ~yellow-deep~   | ~#7A5D0C~ | Readable yellow-family text    |
 | ~blue~          | ~#274C77~ | Primary structural color       |
 | ~blue-soft~     | ~#4A6A91~ | Secondary structural color     |
 | ~red~           | ~#8E3434~ | Error and danger               |
@@ -143,7 +144,7 @@ turning the entire interface into noise.
 | Window tabs    | Return the selected tab to ~bg-main~ and anchor focus with blue    |
 | Modeline       | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~ |
 | Selection      | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral |
-| Completion     | Use a subtle blue current-line surface for Corfu so the active candidate stays distinct without a harsh band |
+| Completion     | Use a distinct blue current-line treatment for Corfu so the active candidate stays visible without a harsh band |
 | Navigation     | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity |
 | Alerts         | Separate error, warning, and success with clear semantic colors     |
 | Marks and buttons | Prefer subtle background surfaces over strong saturation for state |
@@ -156,7 +157,7 @@ turning the entire interface into noise.
 | Function                | ~blue~       |
 | Type / builtin          | ~blue-soft~  |
 | Variable                | ~fg-main~    |
-| String                  | ~yellow~     |
+| String                  | ~yellow-deep~ |
 | Constant / regexp accent| ~red-soft~   |
 | Warning / invalid       | ~red~        |
 | Comment / doc           | ~fg-alt~, ~fg-dim~ |
@@ -201,7 +202,8 @@ and exceptions in red.
 - A warmer background is less starkly clear than a pure-white theme
 - Using blue as the dominant structural color intentionally restrains a more
   warm-toned visual identity
-- Using yellow for ~string~ remains a candidate for future review
+- Using a deeper yellow-family foreground for ~string~ preserves warmth without
+  relying on the lower-contrast base ~yellow~
 
 * Validation Checklist
 

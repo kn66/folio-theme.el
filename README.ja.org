@@ -20,6 +20,35 @@ Protesilaos Stavrou 氏の仕事の上に成り立っています。派生テー
 の構造、意味ベースの palette 語彙、広い face カバレッジは両プロジェクト
 に依拠しています。
 
+* Screenshots
+:PROPERTIES:
+:ID:       a2661746-41fd-4795-bd73-25ebd5b2d316
+:END:
+
+** org-mode
+:PROPERTIES:
+:ID:       25dd3c85-5638-470d-b883-52164d4b0e32
+:END:
+
+#+DOWNLOADED: screenshot @ 2026-04-20 21:21:35
+[[file:Screenshots/2026-04-20_21-21-35_screenshot.png]]
+
+** emacs-lisp
+:PROPERTIES:
+:ID:       eac291ff-fb99-484d-8ebf-ffc41e8079e4
+:END:
+
+#+DOWNLOADED: screenshot @ 2026-04-20 21:13:11
+[[file:Screenshots/2026-04-20_21-13-11_screenshot.png]]
+
+** tsx
+:PROPERTIES:
+:ID:       95934e53-fb20-4c7e-89be-f0bcfec9cee1
+:END:
+
+#+DOWNLOADED: screenshot @ 2026-04-20 21:22:21
+[[file:Screenshots/2026-04-20_21-22-21_screenshot.png]]
+
 * Dependencies
 
 - Emacs ~28.1+~
@@ -77,8 +106,22 @@ package としてインストールした場合は、そのディレクトリが
 
 テーマ設計は palette-first を維持し、青は構造、赤は例外、
 暖かい黄は補助的な面に置きます。
-Corfu の選択行にはごく薄い青の面を使い、紙らしい背景を崩さずに
-現在候補を見分けやすくしています。
+Corfu の選択行には静かだが十分に区別できる青の処理を使い、紙らしい背景を
+崩さずに現在候補を見分けやすくしています。
+
+* Validation
+
+package.el ベースの環境では、batch load 前に package を初期化します。
+
+#+begin_src sh
+emacs --batch -L . --eval "(progn (require 'package) (package-initialize) (require 'folio-theme) (load-theme 'folio t))"
+#+end_src
+
+byte compile も同じ前提で確認できます。
+
+#+begin_src sh
+emacs --batch --eval "(progn (require 'package) (package-initialize) (byte-compile-file \"folio-theme.el\"))"
+#+end_src
 
 詳しくは [[./DESIGN.org][DESIGN.org]] と [[./DESIGN.ja.org][DESIGN.ja.org]] を
 参照してください。

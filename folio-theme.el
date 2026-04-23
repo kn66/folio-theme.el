@@ -72,6 +72,7 @@
     (yellow "#B68A14")
     (yellow-warmer "#D8B85A")
     (yellow-cooler "#9F7A10")
+    (yellow-deep "#7A5D0C")
     (yellow-faint "#D8C37A")
 
     ;; Blue family: structural guidance
@@ -217,7 +218,7 @@
     (property fg-main)
     (docstring fg-alt)
     (docmarkup yellow-cooler)
-    (string yellow)
+    (string yellow-deep)
     (type blue-warmer)
     (variable fg-main)
     (variable-use fg-main)
@@ -365,10 +366,10 @@
     (fg-term-cyan cyan)
     (bg-term-cyan-bright cyan-warmer)
     (fg-term-cyan-bright cyan-warmer)
-    (bg-term-white border)
-    (fg-term-white border)
+    (bg-term-white bg-alt)
+    (fg-term-white fg-dim)
     (bg-term-white-bright bg-main)
-    (fg-term-white-bright bg-main)
+    (fg-term-white-bright fg-main)
 
     ;; Rainbow / heading order
     (rainbow-0 blue)
@@ -433,8 +434,8 @@ or a color string."
   '(`(corfu-default ((,c :inherit modus-themes-fixed-pitch
                          :background ,bg-dim
                          :foreground ,fg-main)))
-    `(corfu-current ((,c :background ,bg-blue-subtle
-                         :foreground ,fg-main
+    `(corfu-current ((,c :background ,bg-blue-intense
+                         :foreground ,blue
                          :extend t
                          :weight semi-bold)))
     `(corfu-border ((,c :background ,border
