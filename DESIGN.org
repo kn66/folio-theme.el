@@ -131,6 +131,7 @@ turning the entire interface into noise.
 | ~bg-*-subtle~    | ~bg-blue-subtle~    | Light hover, mark, and search backgrounds|
 | ~bg-*-intense~   | ~bg-red-intense~    | Strong exception or emphasis surfaces    |
 | ~bg-*-nuanced~   | ~bg-yellow-nuanced~ | Heading and soft section surfaces        |
+| Completion       | ~bg-completion-current~ | Current completion candidate        |
 | ~bg-graph-*~     | ~bg-graph-green-0~  | ~org-habit~ and graph-oriented faces     |
 
 * Face Strategy
@@ -144,7 +145,7 @@ turning the entire interface into noise.
 | Window tabs    | Return the selected tab to ~bg-main~ and anchor focus with blue    |
 | Modeline       | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~ |
 | Selection      | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral |
-| Completion     | Use a distinct blue current-line treatment for Corfu so the active candidate stays visible without a harsh band |
+| Completion     | Use a dedicated blue current-line surface for Corfu so the active candidate stays visible without a harsh band |
 | Navigation     | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity |
 | Alerts         | Separate error, warning, and success with clear semantic colors     |
 | Marks and buttons | Prefer subtle background surfaces over strong saturation for state |

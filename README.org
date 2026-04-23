@@ -112,8 +112,8 @@ discover ~folio~ normally.
 
 The theme stays palette-first: blue carries structure, red carries
 exceptions, and warm yellow stays in supporting surfaces.
-Corfu uses a distinct but still quiet blue current-line treatment so the
-selected candidate remains visible without breaking the paper-like background.
+Corfu uses a dedicated blue current-line surface so the selected candidate
+remains visible without breaking the paper-like background.
 
 * Validation
 

@@ -163,6 +163,7 @@
     (border-mode-line-active "#4A6A91")
     (border-mode-line-inactive "#DDD4C2")
     (bg-completion "#F7F2E7")
+    (bg-completion-current "#C4D7EA")
     (bg-hover "#F5EFE0")
     (bg-hover-secondary "#EDF3F8")
     (bg-hl-line "#F5EFE0")
@@ -434,7 +435,7 @@ or a color string."
   '(`(corfu-default ((,c :inherit modus-themes-fixed-pitch
                          :background ,bg-dim
                          :foreground ,fg-main)))
-    `(corfu-current ((,c :background ,bg-blue-intense
+    `(corfu-current ((,c :background ,bg-completion-current
                          :foreground ,blue
                          :extend t
                          :weight semi-bold)))
