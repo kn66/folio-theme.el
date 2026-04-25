@@ -11,7 +11,9 @@ Language: [[./README.org][English]] | *日本語*
 - ~ef-themes~ は意味ベースの palette 語彙を提供する
 - ~modus-themes~ はその palette を広範な package face に適用する
 - ~folio~ は独自の部分 palette と semantic mapping によって、
-  紙 / 青 / 赤 のアイデンティティを維持する
+   紙 / 青 / 赤 のアイデンティティを維持する
+
+[[file:assets/palette.svg]]
 
 * 謝辞
 
@@ -32,13 +34,13 @@ Protesilaos Stavrou 氏の仕事の上に成り立っています。派生テー
 ~custom-theme-load-path~ に追加してからテーマを読み込みます。
 
 #+begin_src emacs-lisp
-(defconst folio-theme-directory "/path/to/folio-theme-directory")
+  (defconst folio-theme-directory "/path/to/folio-theme-directory")
 
-(package-install 'modus-themes)
-(package-install 'ef-themes)
+  (package-install 'modus-themes)
+  (package-install 'ef-themes)
 
-(add-to-list 'custom-theme-load-path folio-theme-directory)
-(load-theme 'folio t)
+  (add-to-list 'custom-theme-load-path folio-theme-directory)
+  (load-theme 'folio t)
 #+end_src
 
 有効なセッション中に ~folio-theme.el~ を再読み込みすることもできます。
@@ -53,11 +55,11 @@ package としてインストールした場合は、そのディレクトリが
 テーマ選択 UI からも通常どおり ~folio~ を見つけられます。
 
 #+begin_src emacs-lisp
-(use-package folio-theme
-  :vc (:url "https://github.com/kn66/folio-theme.el"
-       :rev :newest)
-  :config
-  (load-theme 'folio t))
+  (use-package folio-theme
+    :vc (:url "https://github.com/kn66/folio-theme.el"
+              :rev :newest)
+    :config
+    (load-theme 'folio t))
 #+end_src
 
 * Design direction
@@ -65,7 +67,29 @@ package としてインストールした場合は、そのディレクトリが
 - 背景: Sakura Editor の明色背景に着想を得た ~#FFFBF0~
 - 構造: 深い青
 - 警告や例外: 抑えた赤
+- 構文色: ~bg-main~ に対しておおむね 4.6:1 から 5.2:1 の
+  WCAG AA 下限寄り
 - 目標: 背景が黄色すぎる印象にならず、長時間でも使いやすいこと
+
+* Palette
+
+| Role             | Hex       |
+|------------------+-----------|
+| ~bg-main~        | ~#FFFBF0~ |
+| ~bg-dim~         | ~#F7F2E7~ |
+| ~bg-alt~         | ~#EEE5CF~ |
+| ~fg-main~        | ~#2C2924~ |
+| ~fg-dim~         | ~#6B6459~ |
+| ~fg-alt~         | ~#7A7165~ |
+| ~blue~           | ~#274C77~ |
+| ~red~            | ~#8E3434~ |
+| ~green~          | ~#5C6B2D~ |
+| ~blue-syntax~    | ~#557499~ |
+| ~red-syntax~     | ~#AD5747~ |
+| ~green-syntax~   | ~#6B7938~ |
+| ~yellow-syntax~  | ~#8F6D0E~ |
+| ~magenta-syntax~ | ~#846C81~ |
+| ~cyan-syntax~    | ~#477A88~ |
 
 * Implementation model
 
@@ -77,6 +101,8 @@ package としてインストールした場合は、そのディレクトリが
 
 テーマ設計は palette-first を維持し、青は構造、赤は例外、
 暖かい黄は補助的な面に置きます。
+構文強調には専用の ~*-syntax~ role を使い、UI の構造色を弱めずに
+コード token だけを AA 下限寄りへ寄せます。
 Corfu の選択行にはごく薄い青の面を使い、紙らしい背景を崩さずに
 現在候補を見分けやすくしています。
 

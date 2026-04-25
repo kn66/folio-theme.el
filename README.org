@@ -11,7 +11,9 @@ structural accents, and restrained red highlights.
 - ~ef-themes~ provides the semantic palette vocabulary
 - ~modus-themes~ applies that palette across a broad set of package faces
 - ~folio~ keeps its own paper/blue/red identity through a custom partial
-  palette and semantic mappings
+   palette and semantic mappings
+
+[[file:assets/palette.svg]]
 
 * Acknowledgements
 
@@ -66,13 +68,13 @@ Install the dependencies, add the directory that contains
 ~folio-theme.el~ to ~custom-theme-load-path~, then load the theme:
 
 #+begin_src emacs-lisp
-(defconst folio-theme-directory "/path/to/folio-theme-directory")
+  (defconst folio-theme-directory "/path/to/folio-theme-directory")
 
-(package-install 'modus-themes)
-(package-install 'ef-themes)
+  (package-install 'modus-themes)
+  (package-install 'ef-themes)
 
-(add-to-list 'custom-theme-load-path folio-theme-directory)
-(load-theme 'folio t)
+  (add-to-list 'custom-theme-load-path folio-theme-directory)
+  (load-theme 'folio t)
 #+end_src
 
 Reloading ~folio-theme.el~ in an active session is also supported.
@@ -87,11 +89,11 @@ When installed as a package, its directory is also registered in
 discover ~folio~ normally.
 
 #+begin_src emacs-lisp
-(use-package folio-theme
-  :vc (:url "https://github.com/kn66/folio-theme.el"
-       :rev :newest)
-  :config
-  (load-theme 'folio t))
+  (use-package folio-theme
+    :vc (:url "https://github.com/kn66/folio-theme.el"
+              :rev :newest)
+    :config
+    (load-theme 'folio t))
 #+end_src
 
 * Design direction
@@ -99,19 +101,43 @@ discover ~folio~ normally.
 - Background: ~#FFFBF0~ inspired by Sakura Editor's light background
 - Structure: deep blue
 - Alerts and exceptions: restrained red
+- Syntax foregrounds: WCAG AA lower-bound colors, usually around 4.6:1 to
+   5.2:1 against ~bg-main~
 - Goal: stay usable for long sessions without the background feeling too
-  yellow
+   yellow
+
+* Palette
+
+| Role             | Hex       |
+|------------------+-----------|
+| ~bg-main~        | ~#FFFBF0~ |
+| ~bg-dim~         | ~#F7F2E7~ |
+| ~bg-alt~         | ~#EEE5CF~ |
+| ~fg-main~        | ~#2C2924~ |
+| ~fg-dim~         | ~#6B6459~ |
+| ~fg-alt~         | ~#7A7165~ |
+| ~blue~           | ~#274C77~ |
+| ~red~            | ~#8E3434~ |
+| ~green~          | ~#5C6B2D~ |
+| ~blue-syntax~    | ~#557499~ |
+| ~red-syntax~     | ~#AD5747~ |
+| ~green-syntax~   | ~#6B7938~ |
+| ~yellow-syntax~  | ~#8F6D0E~ |
+| ~magenta-syntax~ | ~#846C81~ |
+| ~cyan-syntax~    | ~#477A88~ |
 
 * Implementation model
 
 - ~folio-palette-partial~: base named colors for the theme
 - ~folio-palette-mappings-partial~: semantic role mappings in the Ef style
-  for UI, headings, marks, modelines, and terminal colors
+   for UI, headings, marks, modelines, and terminal colors
 - ~folio-custom-faces~: targeted package face overrides where inherited
-  mappings are not sufficient on their own
+   mappings are not sufficient on their own
 
 The theme stays palette-first: blue carries structure, red carries
 exceptions, and warm yellow stays in supporting surfaces.
+Syntax highlighting uses dedicated ~*-syntax~ roles so code tokens stay near
+the AA contrast floor without weakening structural UI colors.
 Corfu uses a subtle blue current-line surface so the selected candidate
 remains visible without breaking the paper-like background.
 

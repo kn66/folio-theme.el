@@ -18,7 +18,7 @@ The theme is implemented as a derivative theme built on top of
 - ~folio-palette-mappings-partial~ maps them to Ef-style semantic roles
 - ~modus-themes-theme~ propagates those mappings to inherited face coverage
 - ~folio-custom-faces~ remains small and only covers package-specific cases
-  where inherited mappings are not distinct enough on their own
+   where inherited mappings are not distinct enough on their own
 
 * Acknowledgements
 
@@ -95,6 +95,20 @@ foreground.
 Keeping yellow in UI surfaces and light emphasis preserves warmth without
 turning the entire interface into noise.
 
+** 5. Syntax Contrast Stays Near the AA Floor
+
+Normal reading text may keep a higher contrast ratio, but syntax foregrounds
+are tuned close to the WCAG AA lower bound.  This preserves hue and saturation
+differences for code scanning instead of making every token compete through
+maximum lightness contrast.
+
+- Keep primary prose and ordinary code text strong
+- Keep comments, supporting prose, and readable secondary headings just above
+  the AA text threshold
+- Prefer syntax foregrounds around 4.6:1 to 5.2:1 against ~bg-main~
+- Avoid exact threshold values so rounding, antialiasing, and display variance
+  do not make the palette brittle
+
 * Color Palette
 
 ** Core palette
@@ -123,46 +137,58 @@ turning the entire interface into noise.
 | ~green~         | ~#5C6B2D~ | Success and added state        |
 | ~green-soft~    | ~#74823F~ | Done state and supporting green|
 
+** Syntax foreground palette
+
+| Role             | Value     | Purpose                                        |
+|------------------+-----------+------------------------------------------------|
+| ~blue-syntax~    | ~#557499~ | AA-floor structural syntax foreground          |
+| ~red-syntax~     | ~#AD5747~ | AA-floor exceptional syntax foreground         |
+| ~green-syntax~   | ~#6B7938~ | AA-floor success/addition foreground           |
+| ~yellow-syntax~  | ~#8F6D0E~ | AA-floor warm syntax and keybinding foreground |
+| ~magenta-syntax~ | ~#846C81~ | AA-floor supporting syntax foreground          |
+| ~cyan-syntax~    | ~#477A88~ | AA-floor informational syntax foreground       |
+
 ** Surface extensions
 
-| Role family      | Example             | Purpose                                  |
-|------------------+---------------------+------------------------------------------|
-| ~bg-*-subtle~    | ~bg-blue-subtle~    | Light hover, mark, and search backgrounds|
-| ~bg-*-intense~   | ~bg-red-intense~    | Strong exception or emphasis surfaces    |
-| ~bg-*-nuanced~   | ~bg-yellow-nuanced~ | Heading and soft section surfaces        |
-| ~bg-graph-*~     | ~bg-graph-green-0~  | ~org-habit~ and graph-oriented faces     |
+| Role family    | Example             | Purpose                                   |
+|----------------+---------------------+-------------------------------------------|
+| ~bg-*-subtle~  | ~bg-blue-subtle~    | Light hover, mark, and search backgrounds |
+| ~bg-*-intense~ | ~bg-red-intense~    | Strong exception or emphasis surfaces     |
+| ~bg-*-nuanced~ | ~bg-yellow-nuanced~ | Heading and soft section surfaces         |
+| ~bg-graph-*~   | ~bg-graph-green-0~  | ~org-habit~ and graph-oriented faces      |
 
 * Face Strategy
 
 ** Core UI
 
-| Area           | Strategy                                                            |
-|----------------+---------------------------------------------------------------------|
-| Main surface   | Preserve an off-white paper surface and build hierarchy through lightness differences |
-| Context surface| Use ~bg-dim~, ~bg-alt~, and ~bg-hl~ to create depth                |
-| Window tabs    | Return the selected tab to ~bg-main~ and anchor focus with blue    |
-| Modeline       | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~ |
-| Selection      | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral |
-| Completion     | Use a subtle blue current-line surface for Corfu so the active candidate stays distinct without a harsh band |
-| Navigation     | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity |
-| Alerts         | Separate error, warning, and success with clear semantic colors     |
-| Marks and buttons | Prefer subtle background surfaces over strong saturation for state |
+| Area              | Strategy                                                                                                     |
+|-------------------+--------------------------------------------------------------------------------------------------------------|
+| Main surface      | Preserve an off-white paper surface and build hierarchy through lightness differences                        |
+| Context surface   | Use ~bg-dim~, ~bg-alt~, and ~bg-hl~ to create depth                                                          |
+| Window tabs       | Return the selected tab to ~bg-main~ and anchor focus with blue                                              |
+| Modeline          | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~     |
+| Selection         | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral                         |
+| Completion        | Use a subtle blue current-line surface for Corfu so the active candidate stays distinct without a harsh band |
+| Navigation        | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity     |
+| Alerts            | Separate error, warning, and success with clear semantic colors                                              |
+| Marks and buttons | Prefer subtle background surfaces over strong saturation for state                                           |
 
 ** Syntax Highlighting
 
-| Syntax role             | Direction    |
-|-------------------------+--------------|
-| Keyword                 | ~blue~       |
-| Function                | ~blue~       |
-| Type / builtin          | ~blue-soft~  |
-| Variable                | ~fg-main~    |
-| String                  | ~yellow~     |
-| Constant / regexp accent| ~red-soft~   |
-| Warning / invalid       | ~red~        |
-| Comment / doc           | ~fg-alt~, ~fg-dim~ |
+| Syntax role              | Direction          |
+|--------------------------+--------------------|
+| Keyword                  | ~blue-syntax~      |
+| Function                 | ~blue-syntax~      |
+| Type / builtin           | ~blue-syntax~      |
+| Variable                 | ~fg-main~          |
+| String                   | ~yellow-syntax~    |
+| Constant / regexp accent | ~red-syntax~       |
+| Warning / invalid        | ~red~              |
+| Comment / doc            | ~fg-alt~, ~fg-dim~ |
 
 The aim is role separation: structure in blue, body text in neutral colors,
-and exceptions in red.
+and exceptions in red.  The syntax-specific colors intentionally sit closer
+to the AA threshold than the structural UI colors.
 
 ** Domain-specific Faces
 
@@ -176,7 +202,7 @@ and exceptions in red.
 *** Org
 
 - Higher headings: ~blue~, ~blue-soft~
-- Secondary heading differentiation: ~yellow~
+- Secondary heading differentiation: ~yellow-syntax~
 - TODO: ~red~
 - DONE: ~green-soft~
 - Blocks: ~bg-dim~
@@ -184,7 +210,8 @@ and exceptions in red.
 *** Headings / outline
 
 - Higher headings center on ~blue~ and ~blue-warmer~
-- Secondary levels may mix in ~yellow~, ~green~, and ~red-soft~ sparingly
+- Secondary levels may mix in ~yellow-syntax~, ~green~, and ~red-syntax~
+  sparingly
 - Use ~bg-*-nuanced~ only where needed, not as full-width color bands
 
 *** Modeline / terminal
@@ -202,6 +229,8 @@ and exceptions in red.
 - Using blue as the dominant structural color intentionally restrains a more
   warm-toned visual identity
 - Using yellow for ~string~ remains a candidate for future review
+- Lower-bound syntax contrast improves colorfulness, but gives less margin
+  for unusual displays and font rendering than a high-contrast palette
 
 * Validation Checklist
 
@@ -209,6 +238,7 @@ and exceptions in red.
   30 minutes
 - Are ~keyword~, ~function~, ~string~, and ~comment~ differentiated without
   excess
+- Do syntax foregrounds stay just above the WCAG AA normal-text threshold
 - Are ~region~, ~hl-line~, and ~isearch~ clearly visible
 - Do headings and diffs keep a stable information hierarchy
 - Does red avoid drawing constant attention
