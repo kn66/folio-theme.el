@@ -3,6 +3,7 @@
 ;; Copyright (C) 2026 kn66
 ;;
 ;; Author: nobu43
+;; Assisted-by: OpenAI Codex:GPT-5
 ;; URL: https://github.com/kn66/folio-theme.el
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "28.1") (modus-themes "5.0.0") (ef-themes "2.0.0"))
