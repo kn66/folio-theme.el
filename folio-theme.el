@@ -1,9 +1,16 @@
 ;;; folio-theme.el --- Warm paper-like theme built on Modus and Ef -*- lexical-binding: t; -*-
 
+;; Copyright (C) 2026 kn66
+;;
 ;; Author: nobu43
+;; URL: https://github.com/kn66/folio-theme.el
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "28.1") (modus-themes "5.0.0") (ef-themes "2.0.0"))
-;; Keywords: faces, theme
+;; Keywords: faces
+;; SPDX-License-Identifier: MIT
+;;
+;; This file is distributed under the terms of the MIT license.
+;; See the LICENSE file in this repository for details.
 
 ;;; Commentary:
 ;;
@@ -21,7 +28,7 @@
   "Warm paper-like derivative theme built on Modus and Ef."
   :group 'faces
   :group 'ef-themes
-  :prefix "folio-")
+  :prefix "folio-theme-")
 
 (defconst folio-theme-description
   "Warm paper-like theme with deep blue structure and restrained red accents."
@@ -36,7 +43,7 @@
 (defconst folio-theme-background-mode 'light
   "Background mode for `folio'.")
 
-(defconst folio-palette-partial
+(defconst folio-theme-palette-partial
   '(;; Core backgrounds / foregrounds
     (cursor "#B68A14")
     (bg-main "#FFFBF0")
@@ -180,7 +187,7 @@
     (bg-region "#F8F1D7"))
   "Base palette entries for `folio'.")
 
-(defconst folio-palette-mappings-partial
+(defconst folio-theme-palette-mappings-partial
   '(;; Status
     (err red)
     (warning red-syntax)
@@ -419,25 +426,25 @@
     (overline-heading-8 unspecified))
   "Semantic color mappings for `folio'.")
 
-(defcustom folio-palette-overrides nil
-  "Overrides for `folio-palette'.
+(defcustom folio-theme-palette-overrides nil
+  "Overrides for `folio-theme-palette'.
 
 Each element should have the form (NAME VALUE), where NAME is a palette
-entry from `folio-palette' and VALUE is either another palette symbol
+entry from `folio-theme-palette' and VALUE is either another palette symbol
 or a color string."
   :group 'folio-theme
   :package-version '(folio-theme . "0.1.0")
   :type '(repeat (list symbol (choice symbol string))))
 
-(defconst folio-palette
+(defconst folio-theme-palette
   (modus-themes-generate-palette
-   folio-palette-partial
+   folio-theme-palette-partial
    'warm
    nil
-   (append folio-palette-mappings-partial ef-themes-palette-common))
+   (append folio-theme-palette-mappings-partial ef-themes-palette-common))
   "Full palette for `folio'.")
 
-(defconst folio-custom-faces
+(defconst folio-theme-custom-faces
   '(`(corfu-default ((,c :inherit modus-themes-fixed-pitch
                          :background ,bg-dim
                          :foreground ,fg-main)))
@@ -456,7 +463,7 @@ Prefer palette entries and semantic mappings first.
 Use direct face overrides only for targeted package cases where the
 inherited mapping does not provide enough contrast.")
 
-(defun folio--ensure-modus-theme-metadata ()
+(defun folio-theme--ensure-modus-theme-metadata ()
   "Declare `folio' as a Modus-derived theme when reloading in-session.
 
 If a `folio' theme object already exists in the session, ensure it still
@@ -467,22 +474,22 @@ has the theme properties that `modus-themes-theme' expects."
      folio-theme-family
      folio-theme-description
      folio-theme-background-mode
-     'folio-palette
+     'folio-theme-palette
      nil
-     'folio-palette-overrides)
+     'folio-theme-palette-overrides)
     (modus-themes-register folio-theme-name)))
 
-(folio--ensure-modus-theme-metadata)
+(folio-theme--ensure-modus-theme-metadata)
 
 (modus-themes-theme
  folio-theme-name
  folio-theme-family
  folio-theme-description
  folio-theme-background-mode
- 'folio-palette
+ 'folio-theme-palette
  nil
- 'folio-palette-overrides
- 'folio-custom-faces)
+ 'folio-theme-palette-overrides
+ 'folio-theme-custom-faces)
 
 ;;;###autoload
 (when load-file-name
@@ -490,6 +497,7 @@ has the theme properties that `modus-themes-theme' expects."
                (file-name-as-directory
                 (file-name-directory load-file-name))))
 
+(provide-theme 'folio)
 (provide 'folio-theme)
 
 ;;; folio-theme.el ends here

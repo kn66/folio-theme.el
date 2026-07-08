@@ -14,10 +14,10 @@ Language: [[./DESIGN.org][English]] | *日本語*
 現在は ~modus-themes~ と ~ef-themes~ を土台にした派生テーマとして
 実装しています。
 
-- ~folio-palette-partial~ が土台色を定義する
-- ~folio-palette-mappings-partial~ が Ef 流の意味色へ割り当てる
+- ~folio-theme-palette-partial~ が土台色を定義する
+- ~folio-theme-palette-mappings-partial~ が Ef 流の意味色へ割り当てる
 - ~modus-themes-theme~ が継承された face 群へ反映する
-- ~folio-custom-faces~ は最小限に保ちつつ、継承だけでは差が足りない
+- ~folio-theme-custom-faces~ は最小限に保ちつつ、継承だけでは差が足りない
    package face に限定して使う
 
 * 謝辞

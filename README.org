@@ -125,10 +125,10 @@ discover ~folio~ normally.
 
 * Implementation model
 
-- ~folio-palette-partial~: base named colors for the theme
-- ~folio-palette-mappings-partial~: semantic role mappings in the Ef style
+- ~folio-theme-palette-partial~: base named colors for the theme
+- ~folio-theme-palette-mappings-partial~: semantic role mappings in the Ef style
    for UI, headings, marks, modelines, and terminal colors
-- ~folio-custom-faces~: targeted package face overrides where inherited
+- ~folio-theme-custom-faces~: targeted package face overrides where inherited
    mappings are not sufficient on their own
 
 The theme stays palette-first: blue carries structure, red carries

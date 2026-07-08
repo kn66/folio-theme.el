@@ -14,10 +14,10 @@ Its design centers on three ideas:
 The theme is implemented as a derivative theme built on top of
 ~modus-themes~ and ~ef-themes~.
 
-- ~folio-palette-partial~ defines the base colors
-- ~folio-palette-mappings-partial~ maps them to Ef-style semantic roles
+- ~folio-theme-palette-partial~ defines the base colors
+- ~folio-theme-palette-mappings-partial~ maps them to Ef-style semantic roles
 - ~modus-themes-theme~ propagates those mappings to inherited face coverage
-- ~folio-custom-faces~ remains small and only covers package-specific cases
+- ~folio-theme-custom-faces~ remains small and only covers package-specific cases
    where inherited mappings are not distinct enough on their own
 
 * Acknowledgements
