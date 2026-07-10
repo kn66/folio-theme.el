@@ -119,6 +119,8 @@ maximum lightness contrast.
 | ~bg-dim~  | ~#F7F2E7~ | Secondary background                 |
 | ~bg-alt~  | ~#EEE5CF~ | Selection and emphasis surface       |
 | ~bg-hl~   | ~#F5EFE0~ | Weak highlight surface such as line  |
+| ~bg-region~ | ~#EADCAE~ | Active region selection             |
+| ~bg-completion-current~ | ~#D4E3F0~ | Current completion candidate |
 | ~fg-main~ | ~#2C2924~ | Main text                            |
 | ~fg-dim~  | ~#6B6459~ | Supporting text                      |
 | ~fg-alt~  | ~#7A7165~ | Comments and document support text   |
@@ -130,6 +132,7 @@ maximum lightness contrast.
 |-----------------+-----------+--------------------------------|
 | ~yellow~        | ~#B68A14~ | Warm accent                    |
 | ~yellow-soft~   | ~#D8B85A~ | Search and light emphasis      |
+| ~yellow-text~   | ~#7A5D0C~ | Accessible yellow foreground   |
 | ~blue~          | ~#274C77~ | Primary structural color       |
 | ~blue-soft~     | ~#4A6A91~ | Secondary structural color     |
 | ~red~           | ~#8E3434~ | Error and danger               |
@@ -167,8 +170,8 @@ maximum lightness contrast.
 | Context surface   | Use ~bg-dim~, ~bg-alt~, and ~bg-hl~ to create depth                                                          |
 | Window tabs       | Return the selected tab to ~bg-main~ and anchor focus with blue                                              |
 | Modeline          | Keep the active modeline as an extension of paper, with state via semantic roles such as ~modeline-info~     |
-| Selection         | Make ~region~ a very light yellow extension of paper while keeping ~hl-line~ neutral                         |
-| Completion        | Use a subtle blue current-line surface for Corfu so the active candidate stays distinct without a harsh band |
+| Selection         | Give ~region~ a distinct warm surface while keeping ~hl-line~ neutral                                          |
+| Completion        | Use a clearly visible soft-blue current-line surface for Corfu without turning it into a harsh band            |
 | Navigation        | Use blue for prompts, links, and headings, while the cursor shifts to deeper gold for positional clarity     |
 | Alerts            | Separate error, warning, and success with clear semantic colors                                              |
 | Marks and buttons | Prefer subtle background surfaces over strong saturation for state                                           |
@@ -201,18 +204,18 @@ to the AA threshold than the structural UI colors.
 
 *** Org
 
-- Higher headings: ~blue~, ~blue-soft~
-- Secondary heading differentiation: ~yellow-syntax~
+- Higher headings: ~blue~, ~blue-warmer~, ~blue-syntax~
+- Lower headings: neutral foregrounds with occasional blue support
 - TODO: ~red~
 - DONE: ~green-soft~
 - Blocks: ~bg-dim~
 
 *** Headings / outline
 
-- Higher headings center on ~blue~ and ~blue-warmer~
-- Secondary levels may mix in ~yellow-syntax~, ~green~, and ~red-syntax~
-  sparingly
-- Use ~bg-*-nuanced~ only where needed, not as full-width color bands
+- Higher headings center on ~blue~, ~blue-warmer~, and ~blue-syntax~
+- Lower levels return to ~fg-main~, ~fg-alt~, and ~fg-dim~
+- Reserve red for exceptional states instead of ordinary document structure
+- Use ~bg-blue-nuanced~ only where needed, not as a full-width color band
 
 *** Modeline / terminal
 
@@ -220,6 +223,8 @@ to the AA threshold than the structural UI colors.
   through semantic roles
 - Keep terminal ANSI colors in the same palette family instead of letting
   them drift into a separate visual system
+- Map ANSI foregrounds to text-safe variants with at least 4.5:1 contrast
+  against ~bg-main~, including the white and bright-color slots
 
 * Trade-offs
 
@@ -240,6 +245,8 @@ to the AA threshold than the structural UI colors.
   excess
 - Do syntax foregrounds stay just above the WCAG AA normal-text threshold
 - Are ~region~, ~hl-line~, and ~isearch~ clearly visible
+- Are Corfu's current candidate and terminal ANSI foregrounds immediately
+  distinguishable
 - Do headings and diffs keep a stable information hierarchy
 - Does red avoid drawing constant attention
 - Does yellow remain thematic rather than turning into noise

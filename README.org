@@ -100,6 +100,10 @@ discover ~folio~ normally.
 - Alerts and exceptions: restrained red
 - Syntax foregrounds: WCAG AA lower-bound colors, usually around 4.6:1 to
    5.2:1 against ~bg-main~
+- Interactive selection: distinct warm and soft-blue surfaces for ~region~
+  and completion
+- Terminal foregrounds: text-safe palette variants with at least 4.5:1
+  contrast against ~bg-main~
 - Goal: stay usable for long sessions without the background feeling too
    yellow
 
@@ -110,12 +114,15 @@ discover ~folio~ normally.
 | ~bg-main~        | ~#FFFBF0~ |
 | ~bg-dim~         | ~#F7F2E7~ |
 | ~bg-alt~         | ~#EEE5CF~ |
+| ~bg-region~      | ~#EADCAE~ |
+| ~bg-completion-current~ | ~#D4E3F0~ |
 | ~fg-main~        | ~#2C2924~ |
 | ~fg-dim~         | ~#6B6459~ |
 | ~fg-alt~         | ~#7A7165~ |
 | ~blue~           | ~#274C77~ |
 | ~red~            | ~#8E3434~ |
 | ~green~          | ~#5C6B2D~ |
+| ~yellow-text~    | ~#7A5D0C~ |
 | ~blue-syntax~    | ~#557499~ |
 | ~red-syntax~     | ~#AD5747~ |
 | ~green-syntax~   | ~#6B7938~ |

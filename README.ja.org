@@ -69,6 +69,8 @@ package としてインストールした場合は、そのディレクトリが
 - 警告や例外: 抑えた赤
 - 構文色: ~bg-main~ に対しておおむね 4.6:1 から 5.2:1 の
   WCAG AA 下限寄り
+- 操作中の選択面: ~region~ は暖色、completion は淡青で明確にする
+- terminal 前景色: ~bg-main~ に対して 4.5:1 以上の文字用 variant
 - 目標: 背景が黄色すぎる印象にならず、長時間でも使いやすいこと
 
 * Palette
@@ -78,12 +80,15 @@ package としてインストールした場合は、そのディレクトリが
 | ~bg-main~        | ~#FFFBF0~ |
 | ~bg-dim~         | ~#F7F2E7~ |
 | ~bg-alt~         | ~#EEE5CF~ |
+| ~bg-region~      | ~#EADCAE~ |
+| ~bg-completion-current~ | ~#D4E3F0~ |
 | ~fg-main~        | ~#2C2924~ |
 | ~fg-dim~         | ~#6B6459~ |
 | ~fg-alt~         | ~#7A7165~ |
 | ~blue~           | ~#274C77~ |
 | ~red~            | ~#8E3434~ |
 | ~green~          | ~#5C6B2D~ |
+| ~yellow-text~    | ~#7A5D0C~ |
 | ~blue-syntax~    | ~#557499~ |
 | ~red-syntax~     | ~#AD5747~ |
 | ~green-syntax~   | ~#6B7938~ |
@@ -103,8 +108,9 @@ package としてインストールした場合は、そのディレクトリが
 暖かい黄は補助的な面に置きます。
 構文強調には専用の ~*-syntax~ role を使い、UI の構造色を弱めずに
 コード token だけを AA 下限寄りへ寄せます。
-Corfu の選択行にはごく薄い青の面を使い、紙らしい背景を崩さずに
-現在候補を見分けやすくしています。
+Corfu の選択行には識別しやすい淡青の面を使い、紙らしい背景を崩さずに
+現在候補を見分けやすくしています。terminal ANSI 前景色も、white や
+bright 系を含めて通常文字として読めるコントラストを確保します。
 
 詳しくは [[./DESIGN.org][DESIGN.org]] と [[./DESIGN.ja.org][DESIGN.ja.org]] を
 参照してください。
