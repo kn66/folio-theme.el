@@ -30,23 +30,6 @@ Protesilaos Stavrou 氏の仕事の上に成り立っています。派生テー
 
 * インストール
 
-** MELPA
-
-~folio-theme~ が MELPA に掲載された後は、
-~M-x package-install RET folio-theme RET~ または ~use-package~ で
-インストールできます。
-
-#+begin_src emacs-lisp
-  (use-package folio-theme
-    :ensure t
-    :config
-    (load-theme 'folio t))
-#+end_src
-
-package の autoload がインストール先を ~custom-theme-load-path~ に登録するため、
-追加の path 設定なしで ~M-x load-theme~ やテーマ選択 UI から ~folio~ を
-見つけられます。
-
 ** Git からインストール
 
 Emacs 29 以降では、repository の最新版を直接インストールできます。
@@ -58,6 +41,10 @@ Emacs 29 以降では、repository の最新版を直接インストールでき
     :config
     (load-theme 'folio t))
 #+end_src
+
+package の autoload がインストール先を ~custom-theme-load-path~ に登録するため、
+追加の path 設定なしで ~M-x load-theme~ やテーマ選択 UI から ~folio~ を
+見つけられます。
 
 ** ローカルで読み込む
 

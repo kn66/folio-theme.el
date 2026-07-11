@@ -61,22 +61,6 @@ vocabulary, and broad inherited face coverage depend on those projects.
 
 * Installation
 
-** MELPA
-
-After ~folio-theme~ is available from MELPA, install it with
-~M-x package-install RET folio-theme RET~ or declare it with ~use-package~:
-
-#+begin_src emacs-lisp
-  (use-package folio-theme
-    :ensure t
-    :config
-    (load-theme 'folio t))
-#+end_src
-
-The package autoload registers its installation directory in
-~custom-theme-load-path~, so ~M-x load-theme~ and theme selection UIs can
-discover ~folio~ without additional path configuration.
-
 ** Install from Git
 
 Emacs 29 or later can install the latest revision directly from the repository:
@@ -88,6 +72,10 @@ Emacs 29 or later can install the latest revision directly from the repository:
     :config
     (load-theme 'folio t))
 #+end_src
+
+The package autoload registers its installation directory in
+~custom-theme-load-path~, so ~M-x load-theme~ and theme selection UIs can
+discover ~folio~ without additional path configuration.
 
 ** Load locally
 
