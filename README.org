@@ -59,7 +59,37 @@ vocabulary, and broad inherited face coverage depend on those projects.
 - ~modus-themes 5.0.0+~
 - ~ef-themes 2.0.0+~
 
-* Load locally
+* Installation
+
+** MELPA
+
+After ~folio-theme~ is available from MELPA, install it with
+~M-x package-install RET folio-theme RET~ or declare it with ~use-package~:
+
+#+begin_src emacs-lisp
+  (use-package folio-theme
+    :ensure t
+    :config
+    (load-theme 'folio t))
+#+end_src
+
+The package autoload registers its installation directory in
+~custom-theme-load-path~, so ~M-x load-theme~ and theme selection UIs can
+discover ~folio~ without additional path configuration.
+
+** Install from Git
+
+Emacs 29 or later can install the latest revision directly from the repository:
+
+#+begin_src emacs-lisp
+  (use-package folio-theme
+    :vc (:url "https://github.com/kn66/folio-theme.el"
+              :rev :newest)
+    :config
+    (load-theme 'folio t))
+#+end_src
+
+** Load locally
 
 Install the dependencies, add the directory that contains
 ~folio-theme.el~ to ~custom-theme-load-path~, then load the theme:
@@ -75,23 +105,6 @@ Install the dependencies, add the directory that contains
 #+end_src
 
 Reloading ~folio-theme.el~ in an active session is also supported.
-
-* Install with use-package
-
-~folio-theme~ now provides the ~folio-theme~ feature, so it can be loaded
-directly via ~use-package~ before calling ~load-theme~:
-
-When installed as a package, its directory is also registered in
-~custom-theme-load-path~, so ~M-x load-theme~ and theme selection UIs can
-discover ~folio~ normally.
-
-#+begin_src emacs-lisp
-  (use-package folio-theme
-    :vc (:url "https://github.com/kn66/folio-theme.el"
-              :rev :newest)
-    :config
-    (load-theme 'folio t))
-#+end_src
 
 * Design direction
 

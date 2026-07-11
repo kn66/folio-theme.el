@@ -485,6 +485,7 @@ has the theme properties that `modus-themes-theme' expects."
 
 (folio-theme--ensure-modus-theme-metadata)
 
+;;;###theme-autoload
 (modus-themes-theme
  folio-theme-name
  folio-theme-family

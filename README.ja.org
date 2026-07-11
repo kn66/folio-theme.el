@@ -28,7 +28,38 @@ Protesilaos Stavrou 氏の仕事の上に成り立っています。派生テー
 - ~modus-themes 5.0.0+~
 - ~ef-themes 2.0.0+~
 
-* Load locally
+* インストール
+
+** MELPA
+
+~folio-theme~ が MELPA に掲載された後は、
+~M-x package-install RET folio-theme RET~ または ~use-package~ で
+インストールできます。
+
+#+begin_src emacs-lisp
+  (use-package folio-theme
+    :ensure t
+    :config
+    (load-theme 'folio t))
+#+end_src
+
+package の autoload がインストール先を ~custom-theme-load-path~ に登録するため、
+追加の path 設定なしで ~M-x load-theme~ やテーマ選択 UI から ~folio~ を
+見つけられます。
+
+** Git からインストール
+
+Emacs 29 以降では、repository の最新版を直接インストールできます。
+
+#+begin_src emacs-lisp
+  (use-package folio-theme
+    :vc (:url "https://github.com/kn66/folio-theme.el"
+              :rev :newest)
+    :config
+    (load-theme 'folio t))
+#+end_src
+
+** ローカルで読み込む
 
 依存関係をインストールし、~folio-theme.el~ を含むディレクトリを
 ~custom-theme-load-path~ に追加してからテーマを読み込みます。
@@ -44,23 +75,6 @@ Protesilaos Stavrou 氏の仕事の上に成り立っています。派生テー
 #+end_src
 
 有効なセッション中に ~folio-theme.el~ を再読み込みすることもできます。
-
-* use-package でのインストール
-
-~folio-theme~ は ~folio-theme~ feature を提供するため、~use-package~
-から直接読み込んでから ~load-theme~ を呼べます。
-
-package としてインストールした場合は、そのディレクトリが
-~custom-theme-load-path~ にも登録されるため、~M-x load-theme~ や
-テーマ選択 UI からも通常どおり ~folio~ を見つけられます。
-
-#+begin_src emacs-lisp
-  (use-package folio-theme
-    :vc (:url "https://github.com/kn66/folio-theme.el"
-              :rev :newest)
-    :config
-    (load-theme 'folio t))
-#+end_src
 
 * Design direction
 
